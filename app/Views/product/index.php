@@ -46,7 +46,32 @@
                                     <?php echo session()->getFlashdata('warning'); ?>
                                 </div>
                             <?php } ?>
-
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <?php
+                                        echo form_label('Category');
+                                        echo form_dropdown('category', $categories, $category, ['class' => 'form-control', 'id' => 'category']);
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <?php
+                                        echo form_label('Search');
+                                        $form_keyword = [
+                                            'type'  => 'text',
+                                            'name'  => 'keyword',
+                                            'id'    => 'keyword',
+                                            'value' => $keyword,
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Enter keyword ...'
+                                        ];
+                                        echo form_input($form_keyword);
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hovered">
                                     <thead>
@@ -62,7 +87,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php 
+                                        <?php
                                         $nomor = 0;
                                         foreach ($products as $key => $row) { ?>
                                             <tr>
@@ -90,6 +115,11 @@
                                         <?php } ?>
                                     </tbody>
                                 </table>
+                            </div>
+                            <div class="row mt-3 float-right">
+                                <div class="col-md-12">
+                                    <?php echo $pager->links('product', 'bootstrap_pagination') ?>
+                                </div>
                             </div>
                         </div>
                     </div>

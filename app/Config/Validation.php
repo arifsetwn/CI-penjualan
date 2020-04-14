@@ -1,4 +1,6 @@
-<?php namespace Config;
+<?php
+
+namespace Config;
 
 class Validation
 {
@@ -47,7 +49,7 @@ class Validation
 		'category_name' => [
 			'required' => 'Nama Category wajib diisi',
 		],
-		'category_status' =>[
+		'category_status' => [
 			'required' => 'Status category wajib diisi'
 
 		]
@@ -64,7 +66,7 @@ class Validation
 		'product_image'         => 'uploaded[product_image]|mime_in[product_image,image/jpg,image/jpeg,image/gif,image/png]|max_size[product_image,1000]',
 		'product_description'   => 'required'
 	];
-	
+
 	public $product_errors = [
 		'category_id'   => [
 			'required'  => 'Nama category wajib diisi.',
@@ -78,10 +80,10 @@ class Validation
 		'product_sku'   => [
 			'required'  => 'Kode product wajib diisi.'
 		],
-		'product_status'=> [
+		'product_status' => [
 			'required'  => 'Status product wajib diisi.'
 		],
-		'product_image'=> [
+		'product_image' => [
 			'mime_in'   => 'Gambar product hanya boleh diisi dengan jpg, jpeg, png atau gif.',
 			'max_size'  => 'Gambar product maksimal 1mb',
 			'uploaded'  => 'Gambar product wajib diisi'
@@ -91,5 +93,15 @@ class Validation
 		]
 	];
 
+	public $transaction = [
+		'trx_file'         => 'uploaded[trx_file]|ext_in[trx_file,xls,xlsx]|max_size[trx_file,1000]',
+	];
 
+	public $transaction_errors = [
+		'trx_file' => [
+			'ext_in'    => 'File Excel hanya boleh diisi dengan xls atau xlsx.',
+			'max_size'  => 'File Excel product maksimal 1mb',
+			'uploaded'  => 'File Excel product wajib diisi'
+		]
+	];
 }

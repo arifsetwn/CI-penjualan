@@ -1,23 +1,27 @@
-<?php namespace App\Models;
+<?php
+
+namespace App\Models;
+
 use CodeIgniter\Model;
 
-class Product_model extends Model{
+class Product_model extends Model
+{
     protected $table = 'products';
 
-    public function getProduct($id=false)
+    public function getProduct($id = false)
     {
         # code...
-        if ($id == false){
+        if ($id == false) {
             return $this->table('products')
-                        ->join('categories','categories.category_id = products.category_id')
-                        ->get()
-                        ->getResultArray();
+                ->join('categories', 'categories.category_id = products.category_id')
+                ->get()
+                ->getResultArray();
         } else {
             return $this->table('products')
-                        ->join('categories','categories.category_id = products.category_id')
-                        ->where('products.product_id',$id)
-                        ->get()
-                        ->getRowArray();
+                ->join('categories', 'categories.category_id = products.category_id')
+                ->where('products.product_id', $id)
+                ->get()
+                ->getRowArray();
         }
     }
 
@@ -27,10 +31,10 @@ class Product_model extends Model{
         return $this->db->table($this->table)->insert($data);
     }
 
-    public function updateProduct($data,$id)
+    public function updateProduct($data, $id)
     {
         # code...
-        return $this->db->table($this->table)->update($data,['product_id' => $id]);
+        return $this->db->table($this->table)->update($data, ['product_id' => $id]);
     }
 
     public function deleteProduct($id)
@@ -39,4 +43,8 @@ class Product_model extends Model{
         return $this->db->table($this->table)->delete(['product_id' => $id]);
     }
 
+    public function getPrice($id)
+    {
+        return $this->db->table($this->table)->getWhere(['product_id' => $id])->getRowArray();
+    }
 }
